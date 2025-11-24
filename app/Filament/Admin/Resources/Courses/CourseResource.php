@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class CourseResource extends Resource
 {
@@ -33,7 +34,11 @@ class CourseResource extends Resource
 
     protected static ?string $slug = 'cursos';
 
-
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withCount('modules');
+    }
 
     protected static ?int $navigationSort = 1;
 
