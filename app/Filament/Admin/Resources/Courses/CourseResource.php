@@ -20,7 +20,6 @@ use Filament\Tables\Table;
 class CourseResource extends Resource
 {
 
-    protected static ?string $cluster = CourseSystemCluster::class;
 
     protected static ?string $model = Course::class;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Tables;
+namespace App\Filament\Admin\Resources\Modules\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;

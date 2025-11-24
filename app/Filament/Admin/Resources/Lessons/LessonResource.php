@@ -21,7 +21,6 @@ class LessonResource extends Resource
 {
     protected static ?string $model = Lesson::class;
 
-    protected static ?string $cluster = CourseSystemCluster::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedVideoCamera;
 

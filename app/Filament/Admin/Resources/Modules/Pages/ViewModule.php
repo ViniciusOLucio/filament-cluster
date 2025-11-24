@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Pages;
+namespace App\Filament\Admin\Resources\Modules\Pages;
 
-use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\ModuleResource;
+use App\Filament\Admin\Resources\Modules\ModuleResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
