@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Lessons;
 
+use App\Filament\Admin\Clusters\CourseSystem\CourseSystemCluster;
 use App\Filament\Admin\Resources\Lessons\Pages\CreateLesson;
 use App\Filament\Admin\Resources\Lessons\Pages\EditLesson;
 use App\Filament\Admin\Resources\Lessons\Pages\ListLessons;
@@ -20,6 +21,8 @@ class LessonResource extends Resource
 {
     protected static ?string $model = Lesson::class;
 
+    protected static ?string $cluster = CourseSystemCluster::class;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedVideoCamera;
 
     protected static ?string $recordTitleAttribute = 'Lesson';
@@ -30,7 +33,6 @@ class LessonResource extends Resource
 
     protected static ?string $slug = 'aulas';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Sistema de Cursos';
 
     protected static ?int $navigationSort = 2;
 

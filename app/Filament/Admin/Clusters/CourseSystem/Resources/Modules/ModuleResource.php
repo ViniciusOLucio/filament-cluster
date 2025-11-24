@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Modules;
+namespace App\Filament\Admin\Clusters\CourseSystem\Resources\Modules;
 
-use App\Filament\Admin\Resources\Modules\Pages\CreateModule;
-use App\Filament\Admin\Resources\Modules\Pages\EditModule;
-use App\Filament\Admin\Resources\Modules\Pages\ListModules;
-use App\Filament\Admin\Resources\Modules\Pages\ViewModule;
-use App\Filament\Admin\Resources\Modules\Schemas\ModuleForm;
-use App\Filament\Admin\Resources\Modules\Schemas\ModuleInfolist;
-use App\Filament\Admin\Resources\Modules\Tables\ModulesTable;
+use App\Filament\Admin\Clusters\CourseSystem\CourseSystemCluster;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Pages\CreateModule;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Pages\EditModule;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Pages\ListModules;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Pages\ViewModule;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Schemas\ModuleForm;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Schemas\ModuleInfolist;
+use App\Filament\Admin\Clusters\CourseSystem\Resources\Modules\Tables\ModulesTable;
 use App\Models\Module;
 use BackedEnum;
+use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -22,17 +24,10 @@ class ModuleResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $cluster = CourseSystemCluster::class;
+
+
     protected static ?string $recordTitleAttribute = 'Module';
-
-    protected static ?string $modelLabel = 'Modulo';
-
-    protected static ?string $pluralLabel = 'Modulos';
-
-    protected static ?string $slug = 'modulo';
-
-    protected static string|\UnitEnum|null $navigationGroup = 'Sistema de Cursos';
-
-    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

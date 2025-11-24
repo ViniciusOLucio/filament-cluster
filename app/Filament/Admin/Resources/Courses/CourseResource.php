@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Courses;
 
+use App\Filament\Admin\Clusters\CourseSystem\CourseSystemCluster;
 use App\Filament\Admin\Resources\Courses\Pages\CreateCourse;
 use App\Filament\Admin\Resources\Courses\Pages\EditCourse;
 use App\Filament\Admin\Resources\Courses\Pages\ListCourses;
@@ -18,6 +19,9 @@ use Filament\Tables\Table;
 
 class CourseResource extends Resource
 {
+
+    protected static ?string $cluster = CourseSystemCluster::class;
+
     protected static ?string $model = Course::class;
 
     protected static ?string $recordTitleAttribute = 'Curso';
@@ -30,7 +34,7 @@ class CourseResource extends Resource
 
     protected static ?string $slug = 'cursos';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Sistema de Cursos';
+
 
     protected static ?int $navigationSort = 1;
 
