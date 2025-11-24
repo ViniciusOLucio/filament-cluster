@@ -18,6 +18,7 @@ class ModuleForm
                     ->columnSpanFull()
                     ->schema([
                         Select::make('course_id')
+                            ->default(fn () => request('course_id'))
                             ->label('Curso')
                             ->relationship('course', 'name')
                             ->searchable()
