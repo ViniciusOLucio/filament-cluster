@@ -28,12 +28,14 @@ class LessonResource extends Resource
 
     protected static ?string $modelLabel = 'Aula';
 
+    protected static string | \UnitEnum | null $navigationGroup = 'Sistema de cursos';
+
     protected static ?string $pluralLabel = 'Aulas';
 
     protected static ?string $slug = 'aulas';
 
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

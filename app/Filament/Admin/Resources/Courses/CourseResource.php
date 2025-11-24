@@ -30,6 +30,8 @@ class CourseResource extends Resource
 
     protected static ?string $modelLabel = 'Curso';
 
+    protected static string | \UnitEnum | null $navigationGroup = 'Sistema de cursos';
+
     protected static ?string $pluralLabel = 'Cursos';
 
     protected static ?string $slug = 'cursos';
