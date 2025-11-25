@@ -14,7 +14,6 @@ class CreateCourse extends CreateRecord
 
     public function getCreatedNotification(): ?Notification
     {
-        $record = $this->record;
 
         return Notification::make()
             ->success()
@@ -32,6 +31,9 @@ class CreateCourse extends CreateRecord
                         ),
 
                     Action::make('delete')
+                        ->label('Excluir')
+                        ->button()
+                        ->color('danger')
                         ->dispatch('delete-course', [
                             'courseId' => $this->record->id,
                         ])
