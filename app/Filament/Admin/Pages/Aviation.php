@@ -2,6 +2,8 @@
 
 namespace App\Filament\Admin\Pages;
 
+use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -9,6 +11,8 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use function Laravel\Prompts\search;
@@ -70,7 +74,26 @@ class Aviation extends Page implements HasTable
                 TextColumn::make('flight.number'),
                 TextColumn::make('departure.airport'),
                 TextColumn::make('arrival.airport'),
+            ])
+            ->headerActions([
+                Action::make('cache_clear')
+                    ->label('Limpar Cache')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->action(function(){
+//                        $this->refresh();
+                        Cache::flush();
+                        Artisan::call('cache:clear');
+                        Notification::make()
+                            ->success()
+                            ->title('Cache limpo')
+                            ->body('Novos dados foram carregados');
+                    }),
+
+
+
             ]);
+
 
 //            ->defaultPaginationPageOption(5)
 //            ->paginated([5, 10, 25, 50, 100, 'all']);
