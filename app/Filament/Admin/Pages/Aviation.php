@@ -87,7 +87,8 @@ class Aviation extends Page implements HasTable
                         Notification::make()
                             ->success()
                             ->title('Cache limpo')
-                            ->body('Novos dados foram carregados');
+                            ->body('Novos dados foram carregados')
+                        ->send();
                     }),
 
 
