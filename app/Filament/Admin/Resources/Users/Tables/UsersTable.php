@@ -6,43 +6,85 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class UsersTable
 {
+
+
     public static function configure(Table $table): Table
     {
         return $table
+            ->striped() // Linhas zebrinhas (mais clean)
+            ->deferLoading() // Carrega mais rápido
+            ->defaultSort('created_at', 'desc')
             ->columns([
+
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Nome')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('medium')
+                    ->limit(25)
+                    ->tooltip(fn ($record) => $record->name),
+
                 TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
+                    ->label('Email')
+                    ->searchable()
+                    ->sortable()
+                    ->copyable()
+                    ->copyMessage('Email copiado!')
+                    ->copyMessageDuration(1500)
+                    ->limit(30)
+                    ->tooltip(fn ($record) => $record->email),
+
+                IconColumn::make('email_verified_at')
+                    ->label('Verificado')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check')
+                    ->falseIcon('heroicon-o-x-mark')
+                    ->trueColor('success')
+                    ->falseColor('danger')
                     ->sortable(),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Criado em')
+                    ->dateTime('d/m/Y H:i')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(),
+
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Atualizado em')
+                    ->dateTime('d/m/Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+
+            ->filters([/* ... */])
+
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()
+                    ->icon('heroicon-o-eye')
+                    ->color('gray'),
+
+                EditAction::make()
+                    ->icon('heroicon-o-pencil-square')
+                    ->color('primary'),
             ])
+
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->label('Excluir selecionados')
+                        ->color('danger'),
                 ]),
+            ])
+
+            ->contentGrid([
+                'md' => 1,
+                'xl' => 1,
             ]);
     }
 }
